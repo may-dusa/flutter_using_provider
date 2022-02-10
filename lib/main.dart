@@ -1,11 +1,11 @@
+import 'package:catalog/screens/newtask.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'models/image_catalog.dart';
-import 'models/favorites.dart';
+import 'models/tasklist.dart';
+import 'models/selectedtab.dart';
 
-import 'screens/imagegrid.dart';
-import 'screens/favorites.dart';
+import 'screens/homepage.dart';
 
 void main(List<String> args) {
   runApp(const MyApp());
@@ -18,9 +18,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider(create: (context) => ImageList()),
-        ChangeNotifierProvider<FavoriteModel>(
-          create: (context) => FavoriteModel(),
+        ChangeNotifierProvider<TaskList>(
+          create: (context) => TaskList(),
         ),
       ],
       child: MaterialApp(
@@ -28,8 +27,8 @@ class MyApp extends StatelessWidget {
         title: 'Images',
         initialRoute: '/',
         routes: {
-          '/': (context) => ImageGrid(),
-          '/fav': (context) => Favorites(),
+          '/': (context) => HomePage(),
+          '/new': (context) => NewTaskPage(),
         },
       ),
     );
